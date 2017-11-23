@@ -5,10 +5,6 @@ Rails.application.routes.draw do
 
   get 'comments/create'
 
-  get 'pictures/list'
-
-  get 'pictures/show'
-
   get 'pictures/create'
 
   get 'events/create'
