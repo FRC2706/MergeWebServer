@@ -6,6 +6,6 @@ class TeamsController < ApplicationController
 
   def show
   	@team = Team.find_by(number: params[:team]);
-  	render :json => @team, :except => :id, :include => [:comments, :pictures]
+  	render :json => @team, :except => [:id, :created_at, :updated_at], :include => [:comments, :pictures]
   end
 end

@@ -1,11 +1,11 @@
 class CompetitionsController < ApplicationController
   def list
   	@competitions = Competition.select("name")
-    render :json => @competitions, :except => [:id]
+    render :json => @competitions, :only => :name
   end
 
   def show
   	@competition = Competition.find_by(name: params[:competition]);
-  	render :json => @competition, :except => :id, :include => :matches
+  	render :json => @competition, :except => [:id, :created_at, :updated_at], :include => :matches
   end
 end

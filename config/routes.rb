@@ -1,41 +1,25 @@
 Rails.application.routes.draw do
-  get 'pictures/list'
-
-  get 'pictures/show'
-
   get 'comments/show'
 
   get 'comments/list'
 
+  get 'comments/create'
+
+  get 'pictures/list'
+
+  get 'pictures/show'
+
+  get 'pictures/create'
+
   get 'events/create'
-
-  get 'events/list'
-
-  get 'matches/list'
 
   get 'matches/show'
 
-  get 'match/list'
-
-  get 'match/show'
-
   get 'competitions/list'
 
   get 'competitions/show'
 
   get 'teams/list'
-
-  get 'teams/show'
-
-  get 'team/list'
-
-  get 'teams/show'
-
-  get 'teams/list'
-
-  get 'competitions/show'
-
-  get 'competitions/list'
 
   get 'teams/show'
 
