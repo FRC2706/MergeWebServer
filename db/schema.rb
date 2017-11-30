@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116014225) do
+ActiveRecord::Schema.define(version: 20171130013410) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",               null: false
@@ -40,8 +40,9 @@ ActiveRecord::Schema.define(version: 20171116014225) do
   end
 
   create_table "goals", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "name",       limit: 255
   end
 
   create_table "matches", force: :cascade do |t|
@@ -59,12 +60,12 @@ ActiveRecord::Schema.define(version: 20171116014225) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "team_id",    limit: 4
-    t.string   "type",       limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "team_id",      limit: 4
+    t.string   "picture_type", limit: 255
     t.datetime "taken_at"
-    t.string   "link",       limit: 255
+    t.string   "link",         limit: 255
   end
 
   create_table "teams", force: :cascade do |t|
