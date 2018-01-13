@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130013410) do
+ActiveRecord::Schema.define(version: 20180111011716) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at",               null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20171130013410) do
     t.string   "name",       limit: 255
     t.string   "location",   limit: 255
     t.binary   "teams",      limit: 65535
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   create_table "events", force: :cascade do |t|
