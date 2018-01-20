@@ -1,4 +1,4 @@
-require 'net/http'
+require 'net/https'
 require 'json'
 
 class SyncBlueAllianceJob < ActiveJob::Base
@@ -6,7 +6,7 @@ class SyncBlueAllianceJob < ActiveJob::Base
 	
 	$base_uri = 'https://www.bluealliance.com/api/v3'
 	$api_key = 'I7YmubNkkgJsSsQSPGV2NcapPOceZWVUX5FHgtkLakc5bd02dW1BP71XLlufNmbz'
-	$ssl_version = :TLSv1_2
+	$ssl_version = nil
 	
 	def competition_list(start_year, end_year)
 		year = start_year
