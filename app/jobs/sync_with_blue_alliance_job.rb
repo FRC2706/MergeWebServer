@@ -26,6 +26,8 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 	def perform()
 		old_logger = ActiveRecord::Base.logger
 		ActiveRecord::Base.logger = nil
+		Team.delete_all
+		Competition.delete_all
 		events = event_list()
 		events_done = 0
 		events.each do |tba_competition|
