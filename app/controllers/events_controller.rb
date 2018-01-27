@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 			render :text => "null"
 			return
 		end
-		@comment = Event.new(:team_id => @team[:id], :match_id => @match[:id], :goal_id => @goal[:id], :success => params[:success], :start_time => params[:start], :end_time => params[:end])
+		@comment = Event.new(:team_id => @team[:id], :match_id => @match[:id], :goal_id => @goal[:id], :success => params[:success], :start_time => params[:start], :end_time => params[:end], :extra => params[:extra])
 		@comment.save
 		render :text => "success"
 	end
