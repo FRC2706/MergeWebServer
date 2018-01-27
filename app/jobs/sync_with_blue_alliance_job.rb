@@ -24,21 +24,16 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 		puts "Downloading events list..."
 		events = event_list()
 		puts "Adding events to database..."
-		events_done = 0
-		events.each do |tba_competition|
+		events.each_with_index do |tba_competition, index|
 			teams = team_list(tba_competition['key'])
-			teams2 = []
 			teams.each do |tba_team|
-				if !Team.exists?(number: tba_team['team_number'])
-					team = Team.new(:name => tba_team['nickname'], :number => tba_team['team_number'], :opr => 0, :dpr => 0)
-					team.save
-				end
-				teams2.push(tba_team['team_number'])
+				team = Team.find_or_create_by(:name => tba_team['nickname'], :number => tba_team['team_number'])
+				team.save
 			end
-			competition = Competition.new(:name => tba_competition['name'], :location => tba_competition['location_name'], :start_date => tba_competition['start_date'], :end_date => tba_competition['end_date'], :teams => teams2)
+			teams = teams.map{|x| x[:team_number]}
+			competition = Competition.new(:name => tba_competition['name'], :location => tba_competition['location_name'], :start_date => tba_competition['start_date'], :end_date => tba_competition['end_date'], :teams => teams)
 			competition.save
-			events_done+= 1
-			puts "Event " + events_done.to_s + "/" + events.size.to_s + " (" + (events_done.to_f / events.size * 100).round.to_s + "%)"
+			puts "Event " + index.to_s + "/" + events.size.to_s + " (" + (index.to_f / events.size * 100).round.to_s + "%)"
 		end
 		ActiveRecord::Base.logger = old_logger
 	end
