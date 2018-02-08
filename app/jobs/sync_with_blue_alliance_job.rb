@@ -45,11 +45,11 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 			matches+= match_list(tba_competition['key'])
 			teams = team_list(tba_competition['key'])
 			teams.each do |tba_team|
-				team = Team.find_or_create_by(:name => tba_team['nickname'], :number => tba_team['team_number'])
+				team = Team.find_or_create_by(:key => tba_team['key'], :name => tba_team['nickname'], :number => tba_team['team_number'])
 				team.save!
 			end
 			teams = teams.map{|x| x["team_number"]}
-			competition = Competition.new(:name => tba_competition['name'], :location => tba_competition['location_name'], :start_date => tba_competition['start_date'], :end_date => tba_competition['end_date'], :teams => teams)
+			competition = Competition.new(:key => tba_competition['key'], :name => tba_competition['name'], :location => tba_competition['location_name'], :start_date => tba_competition['start_date'], :end_date => tba_competition['end_date'], :teams => teams)
 			competition.save!
 			puts "Event " + index.to_s + "/" + events.size.to_s + " (" + (index.to_f / events.size * 100).round.to_s + "%)"
 		end
@@ -66,10 +66,7 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 			else
 				start_time = tba_match['time']
 			end
-			tba_competition = get_competition(tba_match['event_key'])
-			competition = Competition.find_by(:name => tba_competition['name'])
-			puts "Match #" + tba_match['match_number'].to_s + ": Competition name is " + tba_competition['name'] + " and ID is " + competition['id'].to_s
-			match = Match.new(:competition_id => competition['id'], :match_number => tba_match['match_number'], :start_time => start_time, :blue1 => match_teams[1], :blue2 => match_teams[2], :blue3 => match_teams[3], :red1 => match_teams[4], :red2 => match_teams[5], :red3 => match_teams[6])
+			match = Match.new(:key => tba_match['key'], :competition_key => tba_match['event_key'], :match_number => tba_match['match_number'], :start_time => start_time, :blue1 => match_teams[1], :blue2 => match_teams[2], :blue3 => match_teams[3], :red1 => match_teams[4], :red2 => match_teams[5], :red3 => match_teams[6])
 			match.save!
 			puts "Match " + index.to_s + "/" + matches.size.to_s + " (" + (index.to_f / matches.size * 100).round.to_s + "%)"
 		end
