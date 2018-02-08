@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207235928) do
+ActiveRecord::Schema.define(version: 20180208002404) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",               null: false
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20180207235928) do
     t.string   "team_id"
     t.string   "match_key"
     t.boolean  "success"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.integer  "start_time"
+    t.integer  "end_time"
     t.text     "extra",      limit: 65535
     t.text     "goal",       limit: 65535
   end
