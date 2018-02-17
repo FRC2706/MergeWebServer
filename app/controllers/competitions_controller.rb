@@ -1,6 +1,6 @@
 class CompetitionsController < ApplicationController
 	def list
-		@competitions = Competition.select("key")
+		@competitions = Competition.all
 		render :json => @competitions, :only => :name
 	end
 	
