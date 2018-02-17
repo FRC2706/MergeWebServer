@@ -32,7 +32,6 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 		response.parsed_response
 	end
 	
-	# Just discovered that Gedit & Ruby supports emojis so I'm going to make my code really, really ugly. I'll probably fix it later
 	def perform(team_number)
 		ActiveRecord::Base.logger = nil
 		Team.delete_all
