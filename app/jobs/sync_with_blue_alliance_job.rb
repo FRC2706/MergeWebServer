@@ -33,10 +33,10 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 	end
 	
 	def perform(team_number)
-		old_logger = ActiveRecord::Base.logger
 		ActiveRecord::Base.logger = nil
 		Team.delete_all
 		Competition.delete_all
+		Match.delete_all
 		puts "Downloading events list..."
 		events = event_list("frc" + team_number)
 		puts "Adding events to database..."
@@ -53,6 +53,9 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 			competition.save!
 			puts "Event " + index.to_s + "/" + events.size.to_s + " (" + (index.to_f / events.size * 100).round.to_s + "%)"
 		end
+		sync_matches(matches)
+	end
+	def sync_matches(matches)
 		puts "Adding matches to database..."
 		matches.each_with_index do |tba_match, index|
 			match_teams = []
