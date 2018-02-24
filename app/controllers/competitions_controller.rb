@@ -1,7 +1,7 @@
 class CompetitionsController < ApplicationController
 	def list
 		@competitions = Competition.all
-		render :json => @competitions, :only => :name
+		render :json => @competitions, :only => [:key, :name]
 	end
 	
 	def show
