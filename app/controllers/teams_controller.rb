@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   def list
-    @teams = Team.select("name", "number")
+    @teams = Team.all
     render :json => @teams, :except=> [:created_at, :updated_at]
   end
 
