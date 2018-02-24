@@ -5,7 +5,7 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 	base_uri 'https://www.thebluealliance.com/api/v3'
 	headers 'X-TBA-Auth-Key' => 'I7YmubNkkgJsSsQSPGV2NcapPOceZWVUX5FHgtkLakc5bd02dW1BP71XLlufNmbz'
 	
-	def event_list(team_key, year = 2017)
+	def event_list(team_key, year)
 		response = self.class.get("/team/#{team_key}/events/#{year}/simple")
 		if response.success?
 			response.parsed_response
@@ -32,13 +32,13 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 		response.parsed_response
 	end
 	
-	def perform(team_number)
+	def perform(team_number, year)
 		ActiveRecord::Base.logger = nil
 		Team.delete_all
 		Competition.delete_all
 		Match.delete_all
 		puts "Downloading events list..."
-		events = event_list("frc" + team_number)
+		events = event_list("frc" + team_number, year)
 		puts "Adding events to database..."
 		matches = []
 		events.each_with_index do |tba_competition, index|

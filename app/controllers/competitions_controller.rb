@@ -6,6 +6,6 @@ class CompetitionsController < ApplicationController
 	
 	def show
 		@competition = Competition.find_by(key: params[:competition]);
-		render :json => @competition, :except => [:created_at, :updated_at], :include => {:matches => {:only => :match_number}}
+		render :json => @competition, :except => [:created_at, :updated_at], :include => {:matches => {:only => [:match_number, :key]}}
 	end
 end
