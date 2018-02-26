@@ -7,6 +7,6 @@ class MatchesController < ApplicationController
 			return
 		end
 		@match = Match.find_by(competition_key: @competition[:key], key: params[:match])
-		render :json => @match, :except => [:created_at, :updated_at], :include => {:events => {:except => [:created_at, :updated_at, :goal, :extra]}}
+		render :json => @match, :except => [:created_at, :updated_at], :include => {:events => {:except => [:created_at, :updated_at, :goal, :extra, :team_id], :include => {:team => {:only => [:number]}}}}
 	end
 end
