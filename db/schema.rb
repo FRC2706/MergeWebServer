@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208002404) do
+ActiveRecord::Schema.define(version: 20180226235514) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",               null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20180208002404) do
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.string   "team_id"
+    t.string   "team_key"
     t.string   "match_key"
     t.boolean  "success"
     t.integer  "start_time"
