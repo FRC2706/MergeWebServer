@@ -69,7 +69,7 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 			else
 				start_time = tba_match['time']
 			end
-			match = Match.new(:key => tba_match['key'], :competition_key => tba_match['event_key'], :match_number => tba_match['match_number'], :start_time => start_time, :blue1 => match_teams[1], :blue2 => match_teams[2], :blue3 => match_teams[3], :red1 => match_teams[4], :red2 => match_teams[5], :red3 => match_teams[6])
+			match = Match.new(:key => tba_match['key'], :competition_key => tba_match['event_key'], :match_number => tba_match['match_number'], :start_time => DateTime.strptime(start_time.to_s, "%s"), :blue1 => match_teams[0], :blue2 => match_teams[1], :blue3 => match_teams[2], :red1 => match_teams[3], :red2 => match_teams[4], :red3 => match_teams[5])
 			match.save!
 			puts "Match " + index.to_s + "/" + matches.size.to_s + " (" + (index.to_f / matches.size * 100).round.to_s + "%)"
 		end
