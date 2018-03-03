@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
   get 'comments/create'
+  
+  get 'comments/new'
 
   get 'pictures/create'
+  
+  get 'pictures/new'
 
   get 'events/create'
 

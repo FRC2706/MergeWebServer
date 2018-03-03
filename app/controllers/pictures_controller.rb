@@ -11,4 +11,7 @@ class PicturesController < ApplicationController
 		render :text => "success"
 	end
 	
+	def new
+		@team = Team.find_by(number: params[:team])
+	end
 end

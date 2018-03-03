@@ -6,9 +6,19 @@ class CommentsController < ApplicationController
 			render :text => "null"
 			return
 		end
-		@comment = Comment.new(:team_id => @team[:id], :body => params[:body]);
+		@comment = Comment.new(:team_key => @team[:key], :body => params[:body]);
 		@comment.save
-		render :text => "success"
+		respond_to do |format|
+			format.html {
+				redirect_to :controller => :teams, :action => :show, :team => @team.number
+			}
+			format.json {
+				render :text => "success"
+			}
+		end
 	end
 	
+	def new
+		@team = Team.find_by(number: params[:team])
+	end
 end

@@ -1,0 +1,21 @@
+<%= stylesheet_link_tag "style.css" %>
+<h1><%= @team.number %> - <%= @team.name %></h1>
+<p>Key: <%= @team.key %></p>
+<h3>Comments</h3>
+	<ul>
+		<% @comments.each do |comment| %>
+			<li>
+				<%= comment.body %>
+			</li>
+		<% end %>
+	</ul>
+	<%= link_to "Add Comment", :controller => :comments, :action => :new, :team => @team.number %>
+<h3>Pictures</h3>
+	<ul>
+		<% @pictures.each do |picture| %>
+			<li>
+				
+			</li>
+		<% end %>
+	</ul>
+	<%= link_to "Upload Picture", :controller => :comments, :action => :new, :team => @team.number %>
