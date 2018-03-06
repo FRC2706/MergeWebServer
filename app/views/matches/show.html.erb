@@ -1,0 +1,44 @@
+<%= stylesheet_link_tag "style.css" %>
+<h1>Match #<%= @match.match_number %></h1>
+<table class="table-striped">
+	<thead>
+		<tr>
+			<th>Alliance</th>
+			<th>Position</th>
+			<th>Team</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<td>Red</td>
+			<td>Left</td>
+			<td><%= @match.red1 %></td>
+		</tr>
+		<tr>
+			<td>Red</td>
+			<td>Center</td>
+			<td><%= @match.red2 %></td>
+		</tr>
+		<tr>
+			<td>Red</td>
+			<td>Right</td>
+			<td><%= @match.red3 %></td>
+		</tr>
+		<tr>
+			<td>Blue</td>
+			<td>Left</td>
+			<td><%= @match.blue1 %></td>
+		</tr>
+		<tr>
+			<td>Blue</td>
+			<td>Center</td>
+			<td><%= @match.blue2 %></td>
+		</tr>
+		<tr>
+			<td>Blue</td>
+			<td>Right</td>
+			<td><%= @match.blue3 %></td>
+		</tr>
+	</tbody>
+</table>
