@@ -10,7 +10,7 @@ class MatchesController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.json {
-				render :json => @match, :except => [:created_at, :updated_at], :include => {:events => {:except => [:created_at, :updated_at, :goal, :extra, :team_id], :include => {:team => {:only => [:number]}}}}
+				render :json => @match, :except => [:created_at, :updated_at], :include => {:events => {:except => [:created_at, :updated_at, :team_id], :include => {:team => {:only => [:number]}}}}
 			}
 		end
 	end
