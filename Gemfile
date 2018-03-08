@@ -48,3 +48,5 @@ end
 gem "httparty"
 
 gem "paperclip"
+
+gem "protected_attributes"

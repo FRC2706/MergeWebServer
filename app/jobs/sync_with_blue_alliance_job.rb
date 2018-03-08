@@ -59,7 +59,7 @@ class SyncWithBlueAllianceJob < ActiveJob::Base
 		puts "Adding matches to database..."
 		matches.each_with_index do |tba_match, index|
 			match_teams = []
-			teams = tba_match['alliances']['blue']['team_keys'] + tba_match['alliances']['blue']['team_keys']
+			teams = tba_match['alliances']['blue']['team_keys'] + tba_match['alliances']['red']['team_keys']
 			teams.each_with_index do |tba_team_key, index|
 				tba_team = get_team(tba_team_key)
 				match_teams[index] = tba_team['team_number']

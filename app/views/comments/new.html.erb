@@ -1,0 +1,8 @@
+<%= stylesheet_link_tag "style.css" %>
+<h1>New comment for <%= @team.name %></h1>
+<%= form_tag("create", method: "get") do %>
+	<%= hidden_field_tag :team, @team.number %>
+	<%= text_area_tag :body %>
+	<br>
+	<%= submit_tag "Add Comment" %>
+<% end %>

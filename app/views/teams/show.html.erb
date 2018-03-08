@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag "style.css" %>
+<h1><%= @team.number %> - <%= @team.name %></h1>
+<%= link_to "Back", :action => :list %>
+<br>
+Key: <%= @team.key %>
+<h3>Comments</h3>
+	<ul>
+		<% @comments.each do |comment| %>
+			<li>
+				<%= comment.body %>
+			</li>
+		<% end %>
+	</ul>
+	<%= link_to "Add Comment", :controller => :comments, :action => :new, :team => @team.number %>
+<h3>Matches</h3>
+<table class="table-striped">
+	<thead>
+		<tr>
+			<th>Match Number</th>
+			<th>Time</th>
+			<th colspan="1"></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @matches.each do |match| %>
+			<tr>
+				<td><%= match.match_number %></td>
+				<td><%= match.start_time %></td>
+				<td><%= link_to "Show", :controller => :matches, :action => :show, :match => match.key, :competition => match.competition_key %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<h3>Pictures</h3>
+<ul>
+	<% @pictures.each do |picture| %>
+		<li>
+			
+		</li>
+	<% end %>
+</ul>
+<%= link_to "Upload Picture", :controller => :comments, :action => :new, :team => @team.number %>
