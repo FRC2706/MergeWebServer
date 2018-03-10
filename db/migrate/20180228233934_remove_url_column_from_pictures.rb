@@ -1,4 +1,4 @@
-class RemoveUrlColumnFromPictures < ActiveRecord::Migration[5.0]
+class RemoveUrlColumnFromPictures < ActiveRecord::Migration
   def change
 	remove_column :pictures, :link
   end

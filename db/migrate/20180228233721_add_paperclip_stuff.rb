@@ -1,4 +1,4 @@
-class AddPaperclipStuff < ActiveRecord::Migration[5.0]
+class AddPaperclipStuff < ActiveRecord::Migration
   def self.up
 	add_attachment :pictures, :data
   end

@@ -1,4 +1,4 @@
-class RemoveOprAndDprFromTeams < ActiveRecord::Migration[5.0]
+class RemoveOprAndDprFromTeams < ActiveRecord::Migration
   def change
 	remove_column :teams, :opr
 	remove_column :teams, :dpr

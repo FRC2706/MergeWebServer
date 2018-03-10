@@ -1,4 +1,4 @@
-class MoreBaKeyStuff < ActiveRecord::Migration[5.0]
+class MoreBaKeyStuff < ActiveRecord::Migration
 	def change
 		change_column :teams, :id, :string
 		rename_column :teams, :id, :key
