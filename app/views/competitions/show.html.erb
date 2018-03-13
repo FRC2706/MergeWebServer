@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag "style.css" %>
+<h1><%= @competition.name %></h1>
+Location: <%= @competition.location %>
+<br>
+Key: <%= @competition.key %>
+<br>
+<h3>Teams</h3>
+<table class="table-striped">
+	<thead>
+		<tr>
+			<th>Number</th>
+			<th colspan="1"></th>
+		</tr>
+	</thead>
+	<tbody id="teamsTableBody">
+		<script>
+			var tbody = document.getElementById("teamsTableBody");
+			var teams = "<%= @competition.teams %>";
+			teams = teams.substr(1, teams.length - 2);
+			console.log(teams);
+			teamsArray = teams.split(",");
+			for(var i = 0; i < teamsArray.length; i++) {
+				var row = document.createElement("tr");
+				var numberTD = document.createElement("td");
+				var showTD = document.createElement("td");
+				numberTD.innerHTML = teamsArray[i];
+				showTD.innerHTML = "<a href=\"/teams/show?team=" + teamsArray[i] + "\">Show</a>";
+				row.appendChild(numberTD);
+				row.appendChild(showTD);
+				tbody.appendChild(row);
+			}
+		</script>
+	</tbody>
+</table>
+<h3>Matches</h3>
+<table class="table-striped">
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>Number</th>
+			<th colspan="1"></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @matches.each do |match| %>
+			<tr>
+				<td><%= match.key %></td>
+				<td><%= match.match_number %></td>
+				<td><%= link_to "Show", :controller => :matches, :action => :show, :match => match.key, :competition => @competition.key %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
