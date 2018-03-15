@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag "style.css" %>
+<h1>Competitions</h1>
+<table class="table-striped">
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>Name</th>
+			<th>Location</th>
+			<th colspan="1"></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @competitions.each do |competition| %>
+			<tr>
+				<td><%= competition.key %></td>
+				<td><%= competition.name %></td>
+				<td><%= competition.location %></td>
+				<td><%= link_to "Show", :action => :show, :competition => competition.key %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
