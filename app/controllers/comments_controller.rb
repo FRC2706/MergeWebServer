@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 			render :text => "null"
 			return
 		end
-		@comment = Comment.new(:team_key => @team[:key], :body => params[:body]);
+		@comment = Comment.new(:team_key => @team.key, :body => params[:body]);
 		@comment.save
 		respond_to do |format|
 			format.html {
